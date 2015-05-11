@@ -1,0 +1,6 @@
+{
+    "require": {
+       "twilio/sdk" : "*",
+        "mailgun/mailgun-php": "~1.7"
+    }
+}

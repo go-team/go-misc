@@ -1,0 +1,8 @@
+
+There are a lot of api keys needed for these simple scripts to work, 
+they are basically copied verbatum from mailgun and twilio anyway. 
+anything in brackets was removed in order to indicate that it would
+need to be changed to get these demo scripts working.
+
+Use composer to install  dependencies eg.
+./php composer.phar install
