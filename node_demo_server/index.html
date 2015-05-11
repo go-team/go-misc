@@ -1,0 +1,99 @@
+<!-- index.html -->
+<html>
+  <head>
+    <title>Hello React</title>
+    <script src="http://fb.me/react-0.12.2.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.12.2.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+   <script type="text/jsx">
+   var GoState = React.createClass({
+    getInitialState: function(){
+        return { variables : {phone : false, rails : false, extern_service : false}};
+    },
+    componentDidMount: function(){
+      var self = this;
+
+      setInterval(function () {
+        $.getJSON("http://marcomontagna.com:3000/get", function(result){
+          self.setState({ variables: result });
+        });
+      }, 500);
+    },
+    render : function () {
+      return (
+      <div id="my_stages">
+      <div className={this.state.variables.phone ? 'active' : "noactive"} > 
+        <h1> Mobile </h1>
+        
+      </div>
+
+      <i  className={this.state.variables.phone ? 'fa fa-arrow-right' : ""} ></i>
+
+      <div className={this.state.variables.rails ? 'active' : "noactive"}> 
+      <h1> Rails </h1>
+      
+      </div>
+      <i  className={this.state.variables.rails ? 'fa fa-arrow-right' : ""} ></i>
+
+      <div className={this.state.variables.extern_service ? 'active' : "noactive"}> 
+      <h1> External Service </h1>
+      
+      </div>
+      <i  className={this.state.variables.extern_service ? 'fa fa-arrow-right' : ""} ></i>
+
+      <div className={this.state.variables.rails && this.state.variables.extern_service && this.state.variables.phone ? 'active' : "noactive"}> 
+      <h1> Email </h1>
+      
+      </div>
+      </div> );
+    }
+   });
+   
+   React.render(<GoState /> ,document.getElementById("content"));
+   </script>
+
+
+  <style>
+
+    #my_stages div {
+  display: inline-block;
+  width: 209px;
+  font-size: 14px;
+  margin: 20px;
+  border: 1px solid rgb(134, 125, 125);
+  box-shadow: 2px 2px 2px rgb(166, 162, 162);
+    } 
+
+    .active {
+      background: green;
+    }
+ 
+    #content {
+    width: 1200px;
+
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+  }
+
+
+
+  </style>
+
+  </head>
+  <body>
+  <div> 
+    <h1 style="text-align: center"> GoTracker </h1>
+  </div>
+
+  <div id="content">
+
+
+  </div>
+
+  </body>
+</html>
+
